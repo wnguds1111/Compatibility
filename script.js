@@ -1,6 +1,10 @@
-// [파일 이름: script.js] - (404 버그 최종 수정 버전)
+// [파일 이름: script.js] - (ReferenceError 최종 수정 버전)
 
 // --- [ 0. 초기 설정 ] ---
+// [수정] 누락된 변수 선언을 다시 추가합니다!
+const pageBody = document.body;
+const cardContainer = document.querySelector(".card-container");
+
 const mainPage = document.getElementById("main-page");
 const resultPage = document.getElementById("result-page");
 const loadingOverlay = document.getElementById("loading-overlay");
@@ -38,23 +42,19 @@ tabButtons.forEach(button => {
     });
 });
 
-// --- [ 2. MBTI 궁합 기능 (Fetch + 페이지 전환) ] ---
+// --- [ 2. MBTI 궁합 기능 ] ---
 mbtiButton.addEventListener("click", () => {
     const myMbti = myMbtiSelect.value;
     const partnerMbti = partnerMbtiSelect.value;
-
-    // [수정] .sort() 로직을 제거하고, 두 가지 경로를 직접 만듭니다. (버그 수정)
-    // 경로 1: 내가-상대방.json (예: ENFJ-INFP.json)
-    const filePath1 = `./data/mbti/${myMbti}-${partnerMbti}.json`;
     
-    // 경로 2: 상대방-나.json (예: INFP-ENFJ.json)
+    // (404 버그가 수정된 로직)
+    const filePath1 = `./data/mbti/${myMbti}-${partnerMbti}.json`;
     const filePath2 = `./data/mbti/${partnerMbti}-${myMbti}.json`;
 
-    // [수정] runFetch에 두 경로를 전달합니다.
     runFetch(filePath1, filePath2, `MBTI 궁합: ${myMbti} & ${partnerMbti}`);
 });
 
-// --- [ 3. 별자리 궁합 기능 (Fetch + 페이지 전환) ] ---
+// --- [ 3. 별자리 궁합 기능 ] ---
 astroButton.addEventListener("click", () => {
     const fileName = "INFP-ENFJ.json"; // (임시 테스트용)
     const filePath = `./data/mbti/${fileName}`;
@@ -66,10 +66,10 @@ astroButton.addEventListener("click", () => {
 function runFetch(filePath, reverseFilePath, title) {
     loadingOverlay.classList.remove("hidden");
     
-    fetch(filePath) // 1. 첫 번째 (내가-상대방) 파일 시도
+    fetch(filePath) // 1. 첫 번째 파일 시도
         .then(response => {
             if (!response.ok) {
-                // 2. 404가 떴다면, '반대 순서' 파일(reverseFilePath)을 다시 시도
+                // 2. 404가 떴다면, '반대 순서' 파일 시도
                 if (reverseFilePath) {
                     return fetch(reverseFilePath);
                 } else {
@@ -79,29 +79,29 @@ function runFetch(filePath, reverseFilePath, title) {
             return response;
         })
         .then(response => {
-            // 3. 두 번째 시도(반대 순서)마저 실패한 경우
+            // 3. 두 번째 시도마저 실패한 경우
             if (!response.ok) {
-                // [수정] 오류 메시지가 정확한 파일명을 보여주도록 수정
                 throw new Error(`데이터 파일을 찾을 수 없습니다.<br><br>깃허브 'data/mbti/' 폴더에 '${filePath.split('/').pop()}' 또는 '${reverseFilePath.split('/').pop()}' 파일이 있는지 확인해주세요.`);
             }
-            // 4. 둘 중 하나라도 성공하면 JSON으로 변환
             return response.json();
         })
         .then(data => {
-            // 5. 성공! 결과 표시
+            // 4. 성공! 결과 표시 + '크기/정렬' 변경
             showResult(data, title);
             mainPage.classList.add("hidden");
             resultPage.classList.remove("hidden");
-            cardContainer.classList.add("result-active");
+            // [수정] 이제 cardContainer 변수를 찾을 수 있습니다!
+            cardContainer.classList.add("result-active"); 
             pageBody.classList.add("result-active");
         })
         .catch(error => {
-            // 6. 실패 처리 (JSON 파싱 오류, 404 오류 등)
+            // 5. 실패 처리
             console.error("데이터 로드 오류:", error);
             if (error instanceof SyntaxError) {
                 alert("데이터 파일 형식(JSON)이 올바르지 않습니다. 'data/mbti/' 폴더의 JSON 파일에 주석(//)이나 쉼표(,) 오류가 있는지 확인해주세요.");
             } else {
                 resultContainer.innerHTML = `<div class="result-card"><h2>데이터 로드 오류</h2><p style="white-space: pre-wrap; word-wrap: break-word;">${error.message}</p></div>`;
+                // [수정] 이제 cardContainer 변수를 찾을 수 있습니다!
                 mainPage.classList.add("hidden");
                 resultPage.classList.remove("hidden");
                 cardContainer.classList.add("result-active");
@@ -109,7 +109,6 @@ function runFetch(filePath, reverseFilePath, title) {
             }
         })
         .finally(() => {
-            // 7. 로딩 화면 숨기기
             loadingOverlay.classList.add("hidden");
             window.scrollTo(0, 0); 
         });
@@ -117,10 +116,11 @@ function runFetch(filePath, reverseFilePath, title) {
 
 // [ 5. 상세 페이지 기능 ] (이하 동일)
 function showResult(result, title) {
+    // ... (이전과 동일한 '블로그형' 긴 버전 표시 로직) ...
     const strengthsHTML = result.analysis.strengths.map(item => `<li>${item}</li>`).join("");
     const weaknessesHTML = result.analysis.weaknesses.map(item => `<li>${item}</li>`).join("");
     const myTipsHTML = result.actionableAdvice.forMyType_Tips.map(item => `<li>${item}</li>`).join("");
-    const partnerTipsHTML = result.actionableAdvice.forPartnerType_Tips.map(item => `<li>${item}</li>`).join("");
+    const partnerTipsHTML = result.actionsableAdvice.forPartnerType_Tips.map(item => `<li>${item}</li>`).join("");
 
     const resultHTML = `
         <div class="result-card">
@@ -159,6 +159,7 @@ function showResult(result, title) {
 
 // [ 6. 상세 페이지 버튼 기능 ] (이하 동일)
 backButton.addEventListener("click", () => {
+    // [수정] 이제 cardContainer 변수를 찾을 수 있습니다!
     resultPage.classList.add("hidden");
     mainPage.classList.remove("hidden");
     cardContainer.classList.remove("result-active");
@@ -168,6 +169,8 @@ backButton.addEventListener("click", () => {
 
 astroRedirectButton.addEventListener("click", (e) => {
     const targetTabId = e.target.dataset.targetTab;
+    
+    // [수정] 이제 cardContainer 변수를 찾을 수 있습니다!
     resultPage.classList.add("hidden");
     mainPage.classList.remove("hidden");
     cardContainer.classList.remove("result-active");
