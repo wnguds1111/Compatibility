@@ -1,4 +1,4 @@
-/* [파일 이름: style.css] - (폭/폰트 수정 버전) */
+/* [파일 이름: style.css] - (메인 중앙 정렬 / 결과 1200px 버전) */
 
 /* 1. 기본 및 배경 설정 */
 body {
@@ -7,7 +7,8 @@ body {
     font-family: 'Pretendard', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* [수정] 중앙 대신 위에서부터 */
+    /* [수정] flex-start -> center (메인 페이지 수직 중앙 정렬) */
+    align-items: center;
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
@@ -15,8 +16,8 @@ body {
 }
 
 /* 2. 메인 카드 컨테이너 */
-.card-container {
-    /* [수정] 결과 페이지를 더 넓게 (420px -> 600px) */
+.container {
+    /* [수정] 메인 페이지의 기본 넓이 (이전 600px 유지) */
     max-width: 600px;
     width: 100%;
     background-color: #ffffff;
@@ -25,7 +26,15 @@ body {
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.5s ease;
     box-sizing: border-box;
-    margin-top: 20px; /* [수정] 상단 여백 추가 */
+    /* [수정] margin-top 삭제 (body의 align-items: center가 중앙 정렬) */
+}
+
+/* [추가] 결과 페이지만 1200px로 더 넓게 덮어쓰기 */
+#result-page.container {
+    max-width: 1200px;
+    /* [추가] 결과 페이지는 길 수 있으므로, 위아래 여백을 줌 */
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .card-content {
@@ -36,14 +45,14 @@ body {
 .card-header h1 {
     text-align: center;
     color: #333;
-    font-size: 25px; /* [수정] 24px -> 25px */
+    font-size: 25px; /* (1px 키운 폰트 유지) */
     font-weight: 700;
     margin-bottom: 5px;
 }
 .card-header .subtitle {
     text-align: center;
     color: #999;
-    font-size: 15px; /* [수정] 14px -> 15px */
+    font-size: 15px; /* (1px 키운 폰트 유지) */
     margin-bottom: 25px;
 }
 
@@ -56,7 +65,7 @@ body {
 .tab-button {
     flex: 1;
     padding-bottom: 12px;
-    font-size: 17px; /* [수정] 16px -> 17px */
+    font-size: 17px; /* (1px 키운 폰트 유지) */
     font-weight: 600;
     text-align: center;
     background-color: transparent;
@@ -75,7 +84,7 @@ body {
 .tab-content { display: none; }
 .tab-content.active { display: block; animation: slideUp 0.5s ease; }
 .tab-content h2 {
-    font-size: 19px; /* [수정] 18px -> 19px */
+    font-size: 19px; /* (1px 키운 폰트 유지) */
     font-weight: 600;
     color: #333;
     margin-bottom: 15px;
@@ -83,7 +92,7 @@ body {
 .input-group { margin-bottom: 12px; }
 .input-group label {
     display: block;
-    font-size: 14px; /* [수정] 13px -> 14px */
+    font-size: 14px; /* (1px 키운 폰트 유지) */
     font-weight: 500;
     color: #555;
     margin-bottom: 6px;
@@ -92,7 +101,7 @@ body {
 .input-group input {
     width: 100%;
     padding: 12px;
-    font-size: 16px; /* [수정] 15px -> 16px */
+    font-size: 16px; /* (1px 키운 폰트 유지) */
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f8f9fa;
@@ -104,7 +113,7 @@ body {
 .action-button {
     width: 100%;
     padding: 14px;
-    font-size: 17px; /* [수정] 16px -> 17px */
+    font-size: 17px; /* (1px 키운 폰트 유지) */
     font-weight: 700;
     color: white;
     background-color: #e53935;
@@ -133,7 +142,7 @@ body {
 
 /* 8. 사주 (준비 중) */
 .coming-soon {
-    font-size: 15px; /* [수정] 14px -> 15px */
+    font-size: 15px; /* (1px 키운 폰트 유지) */
     color: #777;
     line-height: 1.6;
     background-color: #f9f9f9;
@@ -148,24 +157,24 @@ body {
     padding: 20px; margin-bottom: 15px; animation: fadeIn 0.5s ease;
 }
 #result-content h2 {
-    font-size: 21px; /* [수정] 20px -> 21px */
+    font-size: 21px; /* (1px 키운 폰트 유지) */
     color: #e53935;
     margin-top: 0;
     border-bottom: 2px solid #f9f9f9;
     padding-bottom: 10px;
 }
 #result-content h3 {
-    font-size: 19px; /* [수정] 18px -> 19px */
+    font-size: 19px; /* (1px 키운 폰트 유지) */
     color: #333;
     margin-top: 20px;
 }
 #result-content h4 {
-    font-size: 17px; /* [수정] 16px -> 17px */
+    font-size: 17px; /* (1px 키운 폰트 유지) */
     color: #555;
     margin-bottom: 10px;
 }
 #result-content p, #result-content li {
-    font-size: 16px; /* [수정] 15px -> 16px */
+    font-size: 16px; /* (1px 키운 폰트 유지) */
     color: #555;
     line-height: 1.7;
     white-space: pre-wrap;
@@ -183,7 +192,7 @@ body {
     z-index: 9999;
 }
 #loading-overlay p {
-    font-size: 19px; /* [수정] 18px -> 19px */
+    font-size: 19px; /* (1px 키운 폰트 유지) */
     font-weight: 600;
     color: #555;
 }
