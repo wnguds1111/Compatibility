@@ -1,14 +1,19 @@
-// [파일 이름: /api/translate.js] - OpenAI API를 활용한 번역 프록시
+// [파일 이름: /api/translate.js] - (수정 완료)
 
 const { OpenAI } = require('openai');
 
 module.exports = async (request, response) => {
-    // Vercel 환경 변수에서 키를 가져옵니다.
-    const apiKey = process.env.OPENAI_API_KEY;
+    // 1. [수정] Vercel 환경 변수 이름인 OPENAI_API_KEY를 가져옵니다.
+    const apiKey = process.env.OPENAI_API_KEY; 
     const { text, targetLang } = request.query;
 
-    if (!apiKey || !text || !targetLang) {
-        return response.status(400).json({ error: "Missing required parameters or API Key" });
+    if (!apiKey) {
+        // 2. 키가 없으면 400 에러를 반환하여 Vercel 로그를 통해 사용자에게 알립니다.
+        return response.status(400).json({ error: "OpenAI API Key is missing in Vercel Environment Variables. Please set OPENAI_API_KEY." });
+    }
+    
+    if (!text || !targetLang) {
+        return response.status(400).json({ error: "Missing required text or target language." });
     }
 
     try {
