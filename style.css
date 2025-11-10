@@ -1,74 +1,133 @@
-/* [파일 이름: style.css] */
+/* [파일 이름: style.css] - "세련된 미니멀 디자인" 버전 */
 
-/* 기본 설정 */
+/* 1. 기본 및 배경 설정 */
 body {
+    /* [수정] 캡처 화면의 그라데이션 배경 */
+    background: linear-gradient(135deg, #fce38a 0%, #f38181 100%);
+    background-attachment: fixed;
+    
+    /* 폰트를 Pretendard로 변경 */
     font-family: 'Pretendard', sans-serif;
-    /* [수정] 배경이 이상해지는 문제를 해결하기 위해 body에만 그라데이션 적용 */
-    background: linear-gradient(135deg, #fce38a, #f38181);
-    background-attachment: fixed; /* 스크롤해도 배경 고정 */
+    
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center; /* 카드를 수직/수평 중앙에 */
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+    margin: 0;
 }
 
-/* [수정] 메인/결과 페이지 공통 스타일 */
-.container {
-    max-width: 500px;
+/* 2. 메인 카드 컨테이너 */
+.card-container {
+    max-width: 420px; /* 캡처 화면과 유사한 폭 */
     width: 100%;
     background-color: #ffffff;
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    /* [수정] 더 둥근 모서리와 부드러운 그림자 */
+    border-radius: 24px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.5s ease;
-    margin-top: 20px;
     box-sizing: border-box;
 }
 
-/* [추가] 화면 전환을 위한 '숨김' 클래스 */
-.hidden {
-    display: none !important;
+.card-content {
+    width: 100%;
 }
 
-h1 { text-align: center; color: #333; font-size: 28px; margin-bottom: 5px; }
-.subtitle { text-align: center; color: #777; font-size: 16px; margin-bottom: 30px; }
+/* 3. 헤더 (제목) */
+.card-header h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.card-header .subtitle {
+    text-align: center;
+    color: #999; /* 더 연하게 */
+    font-size: 14px;
+    margin-bottom: 25px;
+}
 
-/* 탭 메뉴 */
-.tab-menu { display: flex; margin-bottom: 25px; border-bottom: 2px solid #eee; }
+/* 4. 탭 메뉴 */
+.tab-menu {
+    display: flex;
+    margin-bottom: 25px;
+    /* [수정] 캡처 화면처럼 하단 경계선 추가 */
+    border-bottom: 1px solid #eee;
+}
 .tab-button {
-    flex: 1; padding: 12px 10px; font-size: 16px; font-weight: 600;
-    text-align: center; background-color: transparent; border: none;
-    cursor: pointer; color: #aaa; border-bottom: 3px solid transparent;
+    flex: 1;
+    padding-bottom: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #aaa; /* 비활성 탭 색상 */
+    border-bottom: 3px solid transparent;
     transition: all 0.3s ease;
 }
-.tab-button.active { color: #f38181; border-bottom-color: #f38181; }
+.tab-button.active {
+    /* [수정] 캡처 화면의 활성 탭 색상 (레드/핑크) */
+    color: #e53935;
+    border-bottom-color: #e53935;
+}
 
-/* 탭 콘텐츠 (폼) */
+/* 5. 탭 콘텐츠 (폼) */
 .tab-content { display: none; }
 .tab-content.active { display: block; animation: slideUp 0.5s ease; }
-.input-group { margin-bottom: 15px; }
-.input-group label { display: block; font-size: 14px; font-weight: 600; color: #555; margin-bottom: 8px; }
+.tab-content h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+.input-group { margin-bottom: 12px; }
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 6px;
+}
+/* [수정] 캡처 화면의 인풋/셀렉트 스타일 */
 .input-group select,
 .input-group input {
-    width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd;
-    border-radius: 8px; background-color: #f9f9f9; box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f9fa; /* 연한 회색 배경 */
+    box-sizing: border-box;
 }
 .input-group input[type="date"] { color: #555; }
 
-/* 버튼 */
+/* 6. 버튼 */
 .action-button {
-    width: 100%; padding: 15px; font-size: 18px; font-weight: 700;
-    color: white; background-color: #f38181; border: none;
-    border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    /* [수정] 캡처 화면의 버튼 색상 */
+    background-color: #e53935;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px; /* 버튼 상단 여백 */
 }
 .action-button:hover {
-    background-color: #e27070; transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(243, 129, 129, 0.4);
+    background-color: #c62828;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(229, 57, 53, 0.3);
 }
 
-/* [추가] 상세 페이지 하단 버튼 */
+/* 7. 상세 페이지 하단 버튼 */
 .button-group { margin-top: 25px; display: flex; gap: 10px; }
 .action-button.secondary {
     background-color: #eee;
@@ -79,52 +138,46 @@ h1 { text-align: center; color: #333; font-size: 28px; margin-bottom: 5px; }
     box-shadow: none;
 }
 
-/* 사주 (준비 중) */
+/* 8. 사주 (준비 중) */
 .coming-soon {
-    font-size: 15px; color: #777; line-height: 1.6;
+    font-size: 14px; color: #777; line-height: 1.6;
     background-color: #f9f9f9; padding: 20px; border-radius: 8px;
     text-align: center;
 }
 
-/* [수정] 결과 카드 (결과 페이지 내부) */
+/* 9. 결과 카드 (결과 페이지 내부) */
 #result-content .result-card {
+    /* (이 스타일은 이전과 동일하게 유지) */
     background-color: #fcfcfc; border: 1px solid #eee; border-radius: 10px;
     padding: 20px; margin-bottom: 15px; animation: fadeIn 0.5s ease;
 }
-#result-content h2 { font-size: 20px; color: #f38181; margin-top: 0; border-bottom: 2px solid #f9f9f9; padding-bottom: 10px; }
+#result-content h2 { font-size: 20px; color: #e53935; margin-top: 0; border-bottom: 2px solid #f9f9f9; padding-bottom: 10px; }
 #result-content h3 { font-size: 18px; color: #333; margin-top: 20px; }
 #result-content h4 { font-size: 16px; color: #555; margin-bottom: 10px; }
 #result-content p, #result-content li { font-size: 15px; color: #555; line-height: 1.7; white-space: pre-wrap; }
 #result-content ul { padding-left: 20px; }
 
-/* [추가] 로딩 오버레이 */
+/* 10. 로딩 오버레이 */
+.hidden { display: none !important; }
 #loading-overlay {
-    position: fixed; /* 화면 전체 덮기 */
-    top: 0; left: 0;
+    position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
     background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
     z-index: 9999;
 }
-#loading-overlay p {
-    font-size: 18px;
-    font-weight: 600;
-    color: #555;
-}
+#loading-overlay p { font-size: 18px; font-weight: 600; color: #555; }
 .spinner {
-    width: 50px;
-    height: 50px;
+    width: 50px; height: 50px;
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #f38181;
+    border-top: 5px solid #e53935; /* 테마 색상으로 변경 */
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 20px;
 }
 
-/* 애니메이션 */
+/* 11. 애니메이션 */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
