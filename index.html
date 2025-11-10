@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>너와 나의 궁합 💘</title>
+    <title>💘 너와 나의 종합 궁합 분석기 (MBTI/별자리)</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUB_ID"
+         crossorigin="anonymous"></script>
+
+    <meta name="description" content="MBTI, 별자리, 사주로 알아보는 너와 나의 연애 궁합. 성격 유형별 연인/소개팅 조언을 상세한 블로그형 콘텐츠로 확인하세요.">
+    <meta name="keywords" content="MBTI 궁합, MBTI 연애, 별자리 궁합, 사주 궁합, 연인 궁합, ENFP INFP 궁합, 성격 유형별 궁합">
+    
+    <meta property="og:title" content="💘 너와 나의 종합 궁합 분석기">
+    <meta property="og:description" content="MBTI, 별자리, 사주로 알아보는 궁합 결과! 가장 자세하고 긴 블로그형 풀이를 받아보세요.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="YOUR_DOMAIN_URL"> 
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=MBTI+LOVE+COMPATIBILITY">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="loading-overlay" class="hidden">
         <div class="spinner"></div>
-        <p>궁합 결과를 분석 중입니다...</p>
+        <p id="loading-text">궁합 결과를 분석 중입니다...</p>
     </div>
 
     <div class="card-container"> 
@@ -20,37 +32,85 @@
                 <h1>너와 나의 궁합 💘</h1>
                 <p class="subtitle">MBTI와 별자리로 알아보는 우리 사이</p>
             </div>
+
             <div class="tab-menu">
                 <button class="tab-button active" data-tab="mbti">MBTI</button>
                 <button class="tab-button" data-tab="astrology">별자리</button>
                 <button class="tab-button" data-tab="saju">사주</button>
             </div>
+
             <div id="mbti" class="tab-content active">
                 <h2>MBTI 궁합</h2>
                 <div class="input-group"><label>MY MBTI</label><select id="my-mbti"></select></div>
                 <div class="input-group"><label>PARTNER'S MBTI</label><select id="partner-mbti"></select></div>
                 <button class="action-button" id="mbti-button">MBTI 궁합보기</button>
             </div>
+
             <div id="astrology" class="tab-content">
                 <h2>별자리 궁합</h2>
                 <div class="input-group"><label>MY 생년월일</label><input type="date" id="my-astro-date"></div>
                 <div class="input-group"><label>PARTNER'S 생년월일</label><input type="date" id="partner-astro-date"></div>
                 <button class="action-button" id="astro-button">별자리 궁합보기</button>
             </div>
+
             <div id="saju" class="tab-content">
                 <h2>사주 궁합</h2>
-                <p class="coming-soon">'사주' 궁합 기능은 '플랜 C'로 준비 중입니다.</p>
+                <p class="coming-soon">
+                    '사주' 궁합 기능은 '플랜 C'로 준비 중입니다.<br><br>
+                    먼저 MBTI와 별자리 궁합을 확인해보세요!
+                </p>
+            </div>
+
+            <div class="ads-banner">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_ADSENSE_PUB_ID"
+                     data-ad-slot="YOUR_MAIN_AD_SLOT"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
             </div>
         </div>
 
         <div id="result-page" class="card-content hidden">
+             <div class="ads-banner">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ADSENSE_PUB_ID" data-ad-slot="YOUR_RESULT_TOP_AD_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            </div>
+            
             <div id="result-content"></div>
+            
             <div class="button-group">
                 <button class="action-button secondary" id="back-button">↩️ 목록으로 돌아가기</button>
                 <button class="action-button" id="astro-redirect-button">🔮 별자리 궁합도 보러가기</button>
             </div>
+            
+            <div class="share-result-group">
+                <h3>결과 공유하기</h3>
+                <button id="result-share-facebook" class="share-btn">Facebook</button>
+                <button id="result-share-twitter" class="share-btn">X (Twitter)</button>
+                <button id="result-share-kakaotalk" class="share-btn">카카오톡</button>
+                <button id="result-share-clipboard" class="share-btn">🔗 링크 복사</button>
+            </div>
+
         </div>
 
-    </div> <script src="script.js"></script>
+    </div> <div id="global-controls">
+        <div class="lang-selector">
+            <button class="lang-btn active" data-lang="ko" id="lang-ko-button">🇰🇷 한국어</button>
+            <button class="lang-btn" data-lang="en" id="lang-en-button">🇺🇸 English</button>
+            <button class="lang-btn" data-lang="zh" id="lang-zh-button">🇨🇳 中文</button>
+            <button class="lang-btn" data-lang="ja" id="lang-ja-button">🇯🇵 日本語</button>
+        </div>
+        <div class="global-share-icons">
+            <button class="share-btn">FB</button>
+            <button class="share-btn">X</button>
+            </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    <script>
+        // [광고 로드] AdSense 승인 후 이 코드가 광고를 로드합니다.
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </body>
 </html>
