@@ -1,6 +1,6 @@
 /* [파일 이름: style.css] */
 
-/* 기본 설정 */
+/* 기존 스타일 유지 */
 body {
     font-family: 'Pretendard', sans-serif;
     background: linear-gradient(135deg, #fce38a, #f38181);
@@ -118,36 +118,155 @@ h1 {
     text-align: center;
 }
 
-/* 결과 표시 영역 */
-#result-area {
-    margin-top: 30px;
+/* --- [ 새롭게 추가된 부분 ] --- */
+
+/* 페이지 전환 */
+.page {
+    display: none;
+    width: 100%;
 }
-.result-card {
-    background-color: #fcfcfc;
-    border: 1px solid #eee;
-    border-radius: 10px;
+.page.active {
+    display: block;
+}
+
+/* 로딩 스피너 */
+#loading-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.loading-spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #f38181;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+.loading-text {
+    font-size: 18px;
+    color: #555;
+    font-weight: 600;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 상세 결과 페이지 */
+#detail-page {
+    background: linear-gradient(135deg, #fce38a, #f38181); /* 메인과 동일한 배경 */
+    min-height: 100vh;
     padding: 20px;
-    margin-bottom: 15px;
-    animation: fadeIn 0.5s ease;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
-.result-card h2 {
-    font-size: 20px;
-    color: #f38181;
-    margin-top: 0;
-    border-bottom: 2px solid #f9f9f9;
-    padding-bottom: 10px;
-}
-.result-card h3 {
-    font-size: 16px;
-    color: #333;
+.detail-container {
+    max-width: 800px; /* 더 넓게 */
+    width: 100%;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
     margin-top: 20px;
 }
-.result-card p, .result-card li {
-    font-size: 15px;
+.back-button {
+    background-color: #6c757d; /* 회색 */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 25px;
+    transition: background-color 0.3s ease;
+}
+.back-button:hover {
+    background-color: #5a6268;
+}
+.back-button.bottom-button { /* 하단 버튼 스타일 */
+    margin-top: 30px;
+    width: 100%;
+}
+
+
+/* 상세 결과 카드 스타일 */
+#detail-result-area h2 {
+    font-size: 28px;
+    color: #f38181;
+    margin-top: 0;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+#detail-result-area h3 {
+    font-size: 22px;
+    color: #333;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+#detail-result-area h4 {
+    font-size: 18px;
     color: #555;
-    line-height: 1.6;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-left: 4px solid #fce38a;
+    padding-left: 10px;
+}
+#detail-result-area p, #detail-result-area li {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 10px;
     white-space: pre-wrap; /* \n (줄바꿈)을 인식하도록 */
 }
+#detail-result-area ul {
+    list-style: disc;
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+
+/* 후킹 섹션 */
+.hooking-section {
+    background-color: #fffaf0; /* 부드러운 배경색 */
+    border: 1px solid #ffe0b2; /* 연한 오렌지색 테두리 */
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 40px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.hooking-section h3 {
+    font-size: 24px;
+    color: #ff7043; /* 오렌지색 */
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.hooking-section p {
+    font-size: 17px;
+    color: #666;
+    margin-bottom: 25px;
+}
+.hooking-section .action-button {
+    width: auto; /* 버튼 크기 자동 조절 */
+    padding: 12px 25px;
+    background-color: #ff7043;
+}
+.hooking-section .action-button:hover {
+    background-color: #e65100;
+}
+
 
 /* 애니메이션 */
 @keyframes fadeIn {
