@@ -1,228 +1,109 @@
-/* [파일 이름: style.css] */
+/* [파일 이름: style.css] - 추가 및 수정 */
 
-/* 기존 스타일 유지 */
-body {
-    font-family: 'Pretendard', sans-serif;
-    background: linear-gradient(135deg, #fce38a, #f38181);
+/* --- 로딩 오버레이 스타일 --- */
+#loading-overlay {
+    position: fixed; /* 화면 전체 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* 반투명 흰색 배경 */
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* 맨 위부터 보이도록 */
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-}
-.container {
-    max-width: 500px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    animation: fadeIn 1s ease;
-    margin-top: 20px; /* 상단 여백 */
-}
-h1 {
-    text-align: center;
-    color: #333;
-    font-size: 28px;
-    margin-bottom: 5px;
-}
-.subtitle {
-    text-align: center;
-    color: #777;
-    font-size: 16px;
-    margin-bottom: 30px;
-}
-
-/* 탭 메뉴 */
-.tab-menu {
-    display: flex;
-    margin-bottom: 25px;
-    border-bottom: 2px solid #eee;
-}
-.tab-button {
-    flex: 1;
-    padding: 12px 10px;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: #aaa;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
-}
-.tab-button.active {
-    color: #f38181;
-    border-bottom-color: #f38181;
-}
-
-/* 탭 콘텐츠 (폼) */
-.tab-content {
+    align-items: center;
+    z-index: 1000; /* 다른 요소 위에 표시 */
     display: none; /* 기본적으로 숨김 */
 }
-.tab-content.active {
-    display: block; /* 선택된 탭만 보임 */
-    animation: slideUp 0.5s ease;
-}
-.input-group {
-    margin-bottom: 15px;
-}
-.input-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 8px;
-}
-.input-group select,
-.input-group input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-sizing: border-box; /* 패딩 포함 크기 계산 */
-}
-.input-group input[type="date"] {
-    color: #555;
-}
-.action-button {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: 700;
-    color: white;
-    background-color: #f38181;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.action-button:hover {
-    background-color: #e27070;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(243, 129, 129, 0.4);
-}
 
-/* 사주 (준비 중) */
-.coming-soon {
-    font-size: 15px;
-    color: #777;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
+.loading-content {
     text-align: center;
+    color: #f38181;
+    font-size: 20px;
+    font-weight: 700;
 }
 
-/* --- [ 새롭게 추가된 부분 ] --- */
-
-/* 페이지 전환 */
-.page {
-    display: none;
-    width: 100%;
-}
-.page.active {
-    display: block;
+.cupid-img {
+    width: 120px;
+    height: auto;
+    animation: bounce 1.5s infinite ease-in-out; /* 큐피트 통통 튀는 애니메이션 */
+    margin-bottom: 20px;
 }
 
-/* 로딩 스피너 */
-#loading-page {
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* --- 상세 페이지 오버레이 (모달) 스타일 --- */
+#detail-page-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.7); /* 어두운 배경 */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-}
-.loading-spinner {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #f38181;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
-    margin-bottom: 20px;
-}
-.loading-text {
-    font-size: 18px;
-    color: #555;
-    font-weight: 600;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    z-index: 999; /* 로딩 오버레이보다 아래 */
+    display: none; /* 기본적으로 숨김 */
+    animation: fadeIn 0.3s ease-out; /* 부드럽게 나타남 */
+    overflow-y: auto; /* 내용이 길면 스크롤 가능 */
 }
 
-/* 상세 결과 페이지 */
-#detail-page {
-    background: linear-gradient(135deg, #fce38a, #f38181); /* 메인과 동일한 배경 */
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-.detail-container {
-    max-width: 800px; /* 더 넓게 */
-    width: 100%;
+.detail-page-content {
     background-color: #ffffff;
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-    margin-top: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    max-width: 700px; /* 상세 페이지 최대 너비 */
+    width: 90%;
+    max-height: 90vh; /* 화면 높이 제한 */
+    overflow-y: auto; /* 내용 스크롤 */
+    position: relative;
+    animation: slideInUp 0.4s ease-out; /* 아래에서 위로 나타나는 애니메이션 */
+    margin: 20px 0; /* 상하 마진 추가 */
 }
-.back-button {
-    background-color: #6c757d; /* 회색 */
-    color: white;
-    padding: 10px 15px;
+
+.close-detail-button {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
     border: none;
-    border-radius: 8px;
+    font-size: 30px;
+    color: #aaa;
     cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 25px;
-    transition: background-color 0.3s ease;
+    line-height: 1;
+    transition: color 0.2s ease;
 }
-.back-button:hover {
-    background-color: #5a6268;
-}
-.back-button.bottom-button { /* 하단 버튼 스타일 */
-    margin-top: 30px;
-    width: 100%;
-}
-
-
-/* 상세 결과 카드 스타일 */
-#detail-result-area h2 {
-    font-size: 28px;
+.close-detail-button:hover {
     color: #f38181;
-    margin-top: 0;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
 }
-#detail-result-area h3 {
-    font-size: 22px;
-    color: #333;
-    margin-top: 35px;
+
+#detail-result-area {
+    padding-top: 10px; /* 닫기 버튼과의 간격 */
+}
+
+#detail-result-area h2 {
+    font-size: 32px;
+    color: #f38181;
+    text-align: center;
     margin-bottom: 15px;
 }
+#detail-result-area h3 {
+    font-size: 24px;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
 #detail-result-area h4 {
-    font-size: 18px;
+    font-size: 20px;
     color: #555;
-    margin-top: 25px;
+    margin-top: 20px;
     margin-bottom: 10px;
-    border-left: 4px solid #fce38a;
-    padding-left: 10px;
 }
 #detail-result-area p, #detail-result-area li {
     font-size: 16px;
@@ -236,44 +117,40 @@ h1 {
     margin-left: 25px;
     margin-bottom: 20px;
 }
+#detail-result-area strong {
+    color: #f38181;
+}
 
-/* 후킹 섹션 */
-.hooking-section {
-    background-color: #fffaf0; /* 부드러운 배경색 */
-    border: 1px solid #ffe0b2; /* 연한 오렌지색 테두리 */
-    border-radius: 12px;
-    padding: 30px;
+.detail-navigation {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
     margin-top: 40px;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    padding-top: 20px;
+    border-top: 1px solid #eee;
 }
-.hooking-section h3 {
-    font-size: 24px;
-    color: #ff7043; /* 오렌지색 */
-    margin-bottom: 15px;
-    font-weight: 700;
+.detail-navigation .action-button {
+    flex: 1;
+    min-width: unset; /* 기본 버튼 스타일 오버라이드 */
 }
-.hooking-section p {
-    font-size: 17px;
-    color: #666;
-    margin-bottom: 25px;
+.detail-navigation .action-button.secondary {
+    background-color: #8ac6d1; /* 다른 색상의 버튼 */
 }
-.hooking-section .action-button {
-    width: auto; /* 버튼 크기 자동 조절 */
-    padding: 12px 25px;
-    background-color: #ff7043;
+.detail-navigation .action-button.secondary:hover {
+    background-color: #79b0bb;
+    box-shadow: 0 4px 10px rgba(138, 198, 209, 0.4);
 }
-.hooking-section .action-button:hover {
-    background-color: #e65100;
-}
-
 
 /* 애니메이션 */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
+
+/* 기존 result-card 스타일은 더 이상 사용하지 않으므로 삭제하거나 무시 */
+/* (만약 기존 #result-area가 완전히 삭제되었다면 이 부분도 불필요) */
+.result-card { display: none; }
