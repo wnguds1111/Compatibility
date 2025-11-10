@@ -3,56 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>너와 나의 궁합 (MBTI/별자리)</title>
+    <title>너와 나의 궁합 💘</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>너와 나의 궁합 💘</h1>
-        <p class="subtitle">MBTI와 별자리로 알아보는 우리 사이</p>
+    <div id="main-page" class="page active">
+        <div class="container">
+            <h1>너와 나의 궁합 💘</h1>
+            <p class="subtitle">MBTI와 별자리로 알아보는 우리 사이</p>
 
-        <div class="tab-menu">
-            <button class="tab-button active" onclick="showTab('mbti')">MBTI</button>
-            <button class="tab-button" onclick="showTab('astrology')">별자리</button>
-            <button class="tab-button" onclick="showTab('saju')">사주</button>
+            <div class="tab-menu">
+                <button class="tab-button active" onclick="showTab('mbti')">MBTI</button>
+                <button class="tab-button" onclick="showTab('astrology')">별자리</button>
+                <button class="tab-button" onclick="showTab('saju')">사주</button>
+            </div>
+
+            <div id="mbti" class="tab-content active">
+                <h2>MBTI 궁합</h2>
+                <div class="input-group">
+                    <label>MY MBTI</label>
+                    <select id="my-mbti"></select>
+                </div>
+                <div class="input-group">
+                    <label>PARTNER'S MBTI</label>
+                    <select id="partner-mbti"></select>
+                </div>
+                <button class="action-button" id="mbti-button">MBTI 궁합보기</button>
+            </div>
+
+            <div id="astrology" class="tab-content">
+                <h2>별자리 궁합</h2>
+                <div class="input-group">
+                    <label>MY 생년월일</label>
+                    <input type="date" id="my-astro-date">
+                </div>
+                <div class="input-group">
+                    <label>PARTNER'S 생년월일</label>
+                    <input type="date" id="partner-astro-date">
+                </div>
+                <button class="action-button" id="astro-button">별자리 궁합보기</button>
+            </div>
+
+            <div id="saju" class="tab-content">
+                <h2>사주 궁합</h2>
+                <p class="coming-soon">
+                    '사주' 궁합 기능은 '플랜 C'로 준비 중입니다.<br><br>
+                    먼저 MBTI와 별자리 궁합을 확인해보세요!
+                </p>
+            </div>
+
+            </div>
+    </div>
+
+    <div id="loading-page" class="page">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">궁합 데이터를 분석 중입니다...</p>
+    </div>
+
+    <div id="detail-page" class="page">
+        <div class="detail-container">
+            <button class="back-button" onclick="showPage('main-page')">← 목록으로 돌아가기</button>
+            <div id="detail-result-area">
+                </div>
+            <div class="hooking-section">
+                <h3>💖 다른 궁합도 궁금하세요?</h3>
+                <p>지금 바로 별자리 궁합도 확인해보세요!</p>
+                <button class="action-button" onclick="showTabAndPage('astrology', 'main-page')">별자리 궁합 보러가기 →</button>
+            </div>
+             <button class="back-button bottom-button" onclick="showPage('main-page')">← 목록으로 돌아가기</button>
         </div>
-
-        <div id="mbti" class="tab-content active">
-            <h2>MBTI 궁합</h2>
-            <div class="input-group">
-                <label>MY MBTI</label>
-                <select id="my-mbti"></select>
-            </div>
-            <div class="input-group">
-                <label>PARTNER'S MBTI</label>
-                <select id="partner-mbti"></select>
-            </div>
-            <button class="action-button" id="mbti-button">MBTI 궁합보기</button>
-        </div>
-
-        <div id="astrology" class="tab-content">
-            <h2>별자리 궁합</h2>
-            <div class="input-group">
-                <label>MY 생년월일</label>
-                <input type="date" id="my-astro-date">
-            </div>
-            <div class="input-group">
-                <label>PARTNER'S 생년월일</label>
-                <input type="date" id="partner-astro-date">
-            </div>
-            <button class="action-button" id="astro-button">별자리 궁합보기</button>
-        </div>
-
-        <div id="saju" class="tab-content">
-            <h2>사주 궁합</h2>
-            <p class="coming-soon">
-                '사주' 궁합 기능은 '플랜 C'로 준비 중입니다.<br><br>
-                먼저 MBTI와 별자리 궁합을 확인해보세요!
-            </p>
-        </div>
-
-        <div id="result-area">
-            </div>
     </div>
 
     <script src="script.js"></script>
