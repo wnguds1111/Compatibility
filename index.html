@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>너와 나의 궁합 💘</title>
+    <title>너와 나의 궁합 (MBTI/별자리)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div id="loading-overlay" class="hidden">
+        <div class="spinner"></div>
+        <p>궁합 결과를 분석 중입니다...</p>
+    </div>
+
+    <div id="main-page" class="container">
         <h1>너와 나의 궁합 💘</h1>
         <p class="subtitle">MBTI와 별자리로 알아보는 우리 사이</p>
 
         <div class="tab-menu">
-            <button class="tab-button active" onclick="showTab('mbti')">MBTI</button>
-            <button class="tab-button" onclick="showTab('astrology')">별자리</button>
-            <button class="tab-button" onclick="showTab('saju')">사주</button>
+            <button class="tab-button active" data-tab="mbti">MBTI</button>
+            <button class="tab-button" data-tab="astrology">별자리</button>
+            <button class="tab-button" data-tab="saju">사주</button>
         </div>
 
         <div id="mbti" class="tab-content active">
@@ -50,25 +55,14 @@
                 먼저 MBTI와 별자리 궁합을 확인해보세요!
             </p>
         </div>
-        
-        </div>
-
-    <div id="loading-overlay">
-        <div class="loading-content">
-            <img src="https://i.ibb.co/C0617Q7/cute-cupid.png" alt="Cupid Loading" class="cupid-img">
-            <p>두근두근, 운명의 상대를 찾아보는 중...</p>
-        </div>
     </div>
 
-    <div id="detail-page-overlay">
-        <div class="detail-page-content">
-            <button class="close-detail-button" onclick="closeDetailPage()">&times;</button>
-            <div id="detail-result-area">
-                </div>
-            <div class="detail-navigation">
-                <button class="action-button" onclick="closeDetailPage()">다른 궁합 보기</button>
-                <button class="action-button secondary" onclick="goToAstrologyTab()">별자리 궁합도 확인하기</button>
-            </div>
+    <div id="result-page" class="container hidden">
+        <div id="result-content"></div>
+        
+        <div class="button-group">
+            <button class="action-button secondary" id="back-button">↩️ 목록으로 돌아가기</button>
+            <button class="action-button" id="astro-redirect-button">🔮 별자리 궁합도 보러가기</button>
         </div>
     </div>
 
