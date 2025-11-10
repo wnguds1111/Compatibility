@@ -1,4 +1,4 @@
-/* [파일 이름: style.css] - (오타 수정 / 동적 크기 버전) */
+/* [파일 이름: style.css] - (결과 1000px / 섹션 간격 수정 버전) */
 
 /* 1. 기본 및 배경 설정 */
 body {
@@ -7,47 +7,38 @@ body {
     font-family: 'Pretendard', sans-serif;
     display: flex;
     justify-content: center;
-    /* [수정] 메인 페이지(600px)를 수직 중앙 정렬하기 위한 기본값 */
     align-items: center;
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
     margin: 0;
-    /* [추가] 부드러운 전환 효과 */
     transition: align-items 0.3s ease;
 }
-
-/* [추가] 결과 페이지(1200px)가 활성화되면 body를 '위'로 정렬 */
 body.result-active {
     align-items: flex-start;
 }
 
 /* 2. 메인 카드 컨테이너 */
-/* [수정] 오타 수정! .container -> .card-container */
 .card-container {
-    /* [수정] 메인 페이지의 기본 넓이 (600px) */
     max-width: 600px;
     width: 100%;
-    background-color: #ffffff; /* [수정] 흰 배경 복구! */
+    background-color: #ffffff;
     padding: 30px;
     border-radius: 24px;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.5s ease;
     box-sizing: border-box;
-    /* [추가] 부드러운 크기 변경 효과 */
     transition: max-width 0.4s ease-in-out;
 }
 
-/* [추가] 결과 페이지(1200px)가 활성화되면 이 스타일 적용 */
+/* [수정] 결과 페이지(1000px)가 활성화되면 이 스타일 적용 */
 .card-container.result-active {
-    max-width: 1200px;
-    margin-top: 40px; /* 결과가 길어지니 위아래 여백 */
+    max-width: 1000px; /* 1200px -> 1000px로 수정 */
+    margin-top: 40px;
     margin-bottom: 40px;
 }
 
 .card-content { width: 100%; }
-
-/* (이하 폰트 1px씩 키운 스타일 동일) */
 
 /* 3. 헤더 (제목) */
 .card-header h1 { text-align: center; color: #333; font-size: 25px; font-weight: 700; margin-bottom: 5px; }
@@ -105,10 +96,25 @@ body.result-active {
     background-color: #fcfcfc; border: 1px solid #eee; border-radius: 10px;
     padding: 20px; margin-bottom: 15px; animation: fadeIn 0.5s ease;
 }
-#result-content h2 { font-size: 21px; color: #e53935; margin-top: 0; border-bottom: 2px solid #f9f9f9; padding-bottom: 10px; }
-#result-content h3 { font-size: 19px; color: #333; margin-top: 20px; }
-#result-content h4 { font-size: 17px; color: #555; margin-bottom: 10px; }
-#result-content p, #result-content li { font-size: 16px; color: #555; line-height: 1.7; white-space: pre-wrap; }
+#result-content h2 {
+    font-size: 21px; color: #e53935; margin-top: 0;
+    border-bottom: 2px solid #f9f9f9; padding-bottom: 10px;
+}
+#result-content h3 {
+    font-size: 19px; color: #333;
+    /* [수정] 이모지 타이틀 상단 간격을 35px -> 45px로 늘림 */
+    margin-top: 45px;
+}
+#result-content h4 {
+    font-size: 17px; color: #555;
+    margin-bottom: 10px;
+}
+#result-content p, #result-content li {
+    font-size: 16px; color: #555;
+    line-height: 1.7; white-space: pre-wrap;
+    /* [수정] p 태그 아래에도 살짝 간격을 줘서 h3와 더 떨어지게 함 */
+    margin-bottom: 10px;
+}
 #result-content ul { padding-left: 20px; }
 
 /* 10. 로딩 오버레이 */
