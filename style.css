@@ -187,6 +187,15 @@ body.result-active {
     border: 1px solid #ddd;
     margin: 5px;
 }
+
+/* [파일 이름: style.css] - 파일 맨 아래에 추가 */
+
+/* 쿠팡 파트너스 영역 */
+.coupang-area {
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border-top: 1px dashed #ddd; /* 광고 영역 구분선 */
+}
 /* 11. 애니메이션 */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
