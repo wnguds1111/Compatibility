@@ -56,12 +56,17 @@
 
             <div id="astrology" class="tab-content">
                 <h2>별자리 궁합</h2>
-                <p class="coming-soon">
-                    '별자리' 궁합 기능은 '플랜 B'로 준비 중입니다.<br><br>
-                    먼저 MBTI 궁합을 확인해보세요!
-                </p>
+                <div class="input-group">
+                    <label for="my-astro-date">MY 생년월일</label>
+                    <input type="date" id="my-astro-date" required>
+                </div>
+                <div class="input-group">
+                    <label for="partner-astro-date">PARTNER'S 생년월일</label>
+                    <input type="date" id="partner-astro-date" required>
+                </div>
+                <button class="action-button" id="astro-button">별자리 궁합보기</button>
             </div>
-
+            
             <div id="saju" class="tab-content">
                 <h2>사주 궁합</h2>
                 <p class="coming-soon">
