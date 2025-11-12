@@ -197,21 +197,7 @@ body.result-active {
     border-top: 1px dashed #ddd; /* 광고 영역 구분선 */
 }
 
-/* [파일 이름: style.css] - 파일 맨 아래에 추가 */
 
-/* -- 13. Disqus 푸터 숨기기 트릭 -- */
-.disqus-wrapper {
-    /* 댓글창을 표시할 '틀(frame)'의 높이를 지정합니다. */
-    /* (이 높이 밖으로 나가는 것은 모두 숨겨집니다) */
-    height: 700px; 
-    
-    /* [핵심] 이 틀을 벗어나는 모든 것을 숨깁니다. (푸터가 잘려나감) */
-    overflow: hidden; 
-    
-    /* (선택) 댓글창 영역을 구분하기 위한 스타일 */
-    border: 1px solid #eee;
-    border-radius: 12px;
-}
 /* 11. 애니메이션 */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
